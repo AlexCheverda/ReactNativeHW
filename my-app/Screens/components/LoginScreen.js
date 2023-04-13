@@ -13,11 +13,6 @@ import {
     TouchableOpacity, 
 } from 'react-native';
 
-const initialState = {
-    login: '',
-    email: '',
-}
-
 export default function LoginScreen() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -106,6 +101,7 @@ const styles = StyleSheet.create({
     },
     input: {
         // fontFamily: "robotoRegular",
+        // marginHorizontal: 16,
         fontSize: 16,
         height: 50,
         backgroundColor: "#F6F6F6",
@@ -119,6 +115,7 @@ const styles = StyleSheet.create({
     },
     btn: {
         backgroundColor: "#FF6C00",
+        // marginHorizontal: 16,
         padding: 16,
         borderRadius: 100,
         marginTop: 43,
