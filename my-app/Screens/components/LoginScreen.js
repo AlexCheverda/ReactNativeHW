@@ -30,13 +30,14 @@ export default function LoginScreen() {
                style={styles.image}
                source={require('../../assets/images/photoBG.png')}
             >
-                
+                <Text style={styles.formTitle}>Войти</Text>
                 <KeyboardAvoidingView
                     behavior={Platform.OS == "ios" ? "padding" : "height"}
                     keyboardVerticalOffset={-35}
                 >
                     <View style={styles.form}>
-                    <Text style={styles.formTitle}>Войти</Text>
+                        
+                    {/* <Text style={styles.formTitle}>Войти</Text> */}
                         <View>
                             <TextInput
                                value={email}
@@ -65,6 +66,7 @@ export default function LoginScreen() {
                         <View>
                             <Text>Нет аккаунта? Зарегистрироваться</Text>
                         </View>  
+                        
                     </View>
                 </KeyboardAvoidingView>
             </ImageBackground>
@@ -118,9 +120,10 @@ const styles = StyleSheet.create({
         // marginHorizontal: 16,
         padding: 16,
         borderRadius: 100,
-        marginTop: 43,
+        marginTop: 43, 
     },
     titleBtn: {
         color: "#fff",
-    }
+        fontSize: 19,
+    },
   });
