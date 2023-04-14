@@ -12,6 +12,12 @@ import {
     TouchableOpacity, 
 } from 'react-native';
 
+import * as Font from "expo-font";
+
+const loadApplication = async() => {
+    await Font.loadAsync({});
+};
+
 export default function LoginScreen() {
 
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
