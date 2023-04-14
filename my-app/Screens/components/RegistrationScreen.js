@@ -48,9 +48,9 @@ export default function RegistrationScreen() {
             >
               <KeyboardAvoidingView
                     behavior={Platform.OS == "ios" ? "padding" : "height"}
-                    keyboardVerticalOffset={-35}
+                    keyboardVerticalOffset={-32}
                 >
-                    <View style={styles.form}>
+                    <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 35 : 0}}>
                         
                     <Text style={styles.formTitle}>Регистрация</Text>
                         <View>
@@ -60,7 +60,7 @@ export default function RegistrationScreen() {
                                style={styles.input}
                                placeholder="Логин"
                                placeholderTextColor="#bdbdbd"
-                               onFocus={() => {setIsShowKeyboard(true)}}
+                               onFocus={() => setIsShowKeyboard(true)}
                             />
                         </View>
                         <View>
@@ -70,7 +70,7 @@ export default function RegistrationScreen() {
                                style={styles.input}
                                placeholder="Адрес электронной почты"
                                placeholderTextColor="#bdbdbd"
-                               onFocus={() => {setIsShowKeyboard(true)}}
+                               onFocus={() => setIsShowKeyboard(true)}
                             />
                         </View>
                         <View>
@@ -81,7 +81,7 @@ export default function RegistrationScreen() {
                                placeholder="Пароль"
                                placeholderTextColor="#bdbdbd"
                                secureTextEntry={true}
-                               onFocus={() => {setIsShowKeyboard(true)}}
+                               onFocus={() => setIsShowKeyboard(true)}
                             />    
                         </View>
                         <TouchableOpacity
@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 25,
         backgroundColor: "#fff",
         paddingHorizontal: 16,
+        // marginBottom: 0,
     },
     formTitle: {
         // fontFamily: "robotoMedium",
@@ -128,8 +129,8 @@ const styles = StyleSheet.create({
         lineHeight: 35.16,
         alignSelf: "center",
         letterSpacing: 1,
-        marginTop: 32,
-        marginBottom: 32,
+        marginTop: 92,
+        marginBottom: 16,
     },
     input: {
         // fontFamily: "robotoRegular",
@@ -143,7 +144,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         lineHeight: 18.75,
         padding: 16,
-        marginBottom: 16,
+        marginTop: 16,
     },
     btn: {
         height: 51,
