@@ -91,7 +91,6 @@ export default function RegistrationScreen() {
                         >
                             <Text style={styles.titleBtn}>Зарегистрироваться</Text>
                         </TouchableOpacity>
-                        
                         <View style={styles.subLink}>
                         <Text style={styles.subTitle}>Уже есть аккаунт? Войти</Text>
                         </View>

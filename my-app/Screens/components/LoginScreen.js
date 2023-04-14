@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 
 export default function LoginScreen() {
+
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -46,21 +47,21 @@ export default function LoginScreen() {
                 {/* <Text style={styles.formTitle}>Войти</Text> */}
                 <KeyboardAvoidingView
                     behavior={Platform.OS == "ios" ? "padding" : "height"}
-                    keyboardVerticalOffset={-35}
+                    keyboardVerticalOffset={-115}
                 >
-                    <View style={styles.form}>
+                    <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 173 : 0}}>
                         
                     <Text style={styles.formTitle}>Войти</Text>
-                        {/* <View> */}
+                        <View>
                             <TextInput
                                value={email}
                                onChangeText={emailHandler}
                                style={styles.input}
                                placeholder="Адрес электронной почты"
                                placeholderTextColor="#bdbdbd"
-                               onFocus={() => {setIsShowKeyboard(true)}}
+                               onFocus={() => setIsShowKeyboard(true)}
                             />
-                        {/* </View> */}
+                        </View>
                         <View>
                             <TextInput
                                value={password}
@@ -69,7 +70,7 @@ export default function LoginScreen() {
                                placeholder="Пароль"
                                placeholderTextColor="#bdbdbd"
                                secureTextEntry={true}
-                               onFocus={() => {setIsShowKeyboard(true)}}
+                               onFocus={() => setIsShowKeyboard(true)}
                             />    
                         </View>
                         <TouchableOpacity
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         letterSpacing: 1,
         marginTop: 32,
-        marginBottom: 32,
+        marginBottom: 16,
     },
     input: {
         // fontFamily: "robotoRegular",
@@ -129,13 +130,13 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         lineHeight: 18.75,
         padding: 16,
-        marginBottom: 16,
+        marginTop: 16,
     },
     btn: {
         height: 51,
         backgroundColor: "#ff6c00",
         // marginHorizontal: 16,
-        // justifyContent: "center",
+        justifyContent: "center",
         alignItems: "center",
         padding: 16,
         borderRadius: 100,
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
     },
     subLink: {
         alignItems: "center",
-        marginBottom: 45,
+        marginBottom: 111,
       },
       subTitle: {
         color: "#1B4371",
