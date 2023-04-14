@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { 
     StyleSheet, 
-    Alert,
     View, 
     Text, 
     TextInput, 
@@ -80,8 +79,9 @@ export default function LoginScreen() {
                         >
                             <Text style={styles.titleBtn}>Войти</Text>
                         </TouchableOpacity>
-                        {/* <Button title="Войти" style={styles.btn}  /> */}
-                        <Text>Нет аккаунта? Зарегистрироваться</Text>     
+                        <View style={styles.subLink}>
+                        <Text style={styles.subTitle}>Нет аккаунта? Зарегистрироваться</Text>
+                        </View>   
                     </View>
                 </KeyboardAvoidingView>
             </ImageBackground>
@@ -147,4 +147,12 @@ const styles = StyleSheet.create({
         fontSize: 16,
         lineHeight: 18.75,
     },
+    subLink: {
+        alignItems: "center",
+        marginBottom: 73,
+      },
+      subTitle: {
+        color: "#1B4371",
+        fontSize: 16,
+      },
   });
