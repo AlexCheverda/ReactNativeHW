@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     },
     subLink: {
       alignItems: "center",
-      marginBottom: 73,
+      marginBottom: 45,
     },
     subTitle: {
       color: "#1B4371",
