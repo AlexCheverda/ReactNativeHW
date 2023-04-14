@@ -14,66 +14,80 @@ import {
 } from 'react-native';
 
 export default function LoginScreen() {
+    const [isShowKeyboard, setIsShowKeyboard] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const keyboardHide = () => {
+        setIsShowKeyboard(false);
+        Keyboard.dismiss();
+    };
+
+    const onLogin = () => {
+        if (password === "" || email === "") {
+            console.log("errore");
+        return;
+        };
+        setIsShowKeyboard(false);
+        Keyboard.dismiss();
+        console.log("Credentials", `${email} + ${password}`);
+        setEmail(""), setPassword("");
+    };
 
     const emailHandler = (text) => setEmail(text);
     const passwordHandler = (text) => setPassword(text);
 
-    const onLogin = () => {
-        Alert.alert("Credentials", `${email} + ${password}`);
-    }
     return (
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <TouchableWithoutFeedback onPress={keyboardHide}>
             <View style={styles.container}>
             <ImageBackground
                style={styles.image}
                source={require('../../assets/images/photoBG.png')}
             >
-                <Text style={styles.formTitle}>Войти</Text>
+                {/* <Text style={styles.formTitle}>Войти</Text> */}
                 <KeyboardAvoidingView
                     behavior={Platform.OS == "ios" ? "padding" : "height"}
                     keyboardVerticalOffset={-35}
                 >
                     <View style={styles.form}>
                         
-                    {/* <Text style={styles.formTitle}>Войти</Text> */}
-                        <View>
+                    <Text style={styles.formTitle}>Войти</Text>
+                        {/* <View> */}
                             <TextInput
                                value={email}
                                onChangeText={emailHandler}
                                style={styles.input}
                                placeholder="Адрес электронной почты"
+                               placeholderTextColor="#bdbdbd"
+                               onFocus={() => {setIsShowKeyboard(true)}}
                             />
-                        </View>
+                        {/* </View> */}
                         <View>
                             <TextInput
                                value={password}
                                onChangeText={passwordHandler}
                                style={styles.input}
                                placeholder="Пароль"
+                               placeholderTextColor="#bdbdbd"
                                secureTextEntry={true}
-                            />
+                               onFocus={() => {setIsShowKeyboard(true)}}
+                            />    
                         </View>
-                        {/* <Button title="Войти" style={styles.btn}  /> */}
                         <TouchableOpacity
                             activeOpacity={0.5}
                             style={styles.btn}
                             onPress={onLogin}
                         >
                             <Text style={styles.titleBtn}>Войти</Text>
-                        </TouchableOpacity> 
-                        <View>
-                            <Text>Нет аккаунта? Зарегистрироваться</Text>
-                        </View>  
-                        
+                        </TouchableOpacity>
+                        {/* <Button title="Войти" style={styles.btn}  /> */}
+                        <Text>Нет аккаунта? Зарегистрироваться</Text>     
                     </View>
                 </KeyboardAvoidingView>
             </ImageBackground>
         </View>
-        </TouchableWithoutFeedback>
-        
-      );
+        </TouchableWithoutFeedback>    
+    );
 };
 
 const styles = StyleSheet.create({
@@ -89,8 +103,10 @@ const styles = StyleSheet.create({
         justifyContent: "flex-end",
     },
     form: {
-        marginHorizontal: 16,
+        borderTopLeftRadius: 25,
+        borderTopRightRadius: 25,
         backgroundColor: "#fff",
+        paddingHorizontal: 16,
     },
     formTitle: {
         // fontFamily: "robotoMedium",
@@ -103,11 +119,11 @@ const styles = StyleSheet.create({
     },
     input: {
         // fontFamily: "robotoRegular",
-        // marginHorizontal: 16,
+
         fontSize: 16,
         height: 50,
-        backgroundColor: "#F6F6F6",
-        borderColor: "#E8E8E8",
+        backgroundColor: "#f6f6f6",
+        borderColor: "#e8e8e8",
         borderRadius: 8,
         borderStyle: "solid",
         borderWidth: 1,
@@ -116,14 +132,19 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     btn: {
-        backgroundColor: "#FF6C00",
+        height: 51,
+        backgroundColor: "#ff6c00",
         // marginHorizontal: 16,
+        // justifyContent: "center",
+        alignItems: "center",
         padding: 16,
         borderRadius: 100,
         marginTop: 43, 
+        marginBottom: 16,
     },
     titleBtn: {
         color: "#fff",
-        fontSize: 19,
+        fontSize: 16,
+        lineHeight: 18.75,
     },
   });
