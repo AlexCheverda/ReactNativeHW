@@ -13,12 +13,6 @@ import {
     Dimensions, 
 } from 'react-native';
 
-// import * as Font from "expo-font";
-
-// const loadApplication = async() => {
-//     await Font.loadAsync({});
-// };
-
 export default function LoginScreen() {
 
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
@@ -47,7 +41,7 @@ export default function LoginScreen() {
 
     const onLogin = () => {
         if (password === "" || email === "") {
-            console.log("errore");
+            console.log("error");
         return;
         };
         setIsShowKeyboard(false);
@@ -133,8 +127,6 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       backgroundColor: '#fff',
-    //   alignItems: 'center',
-    //   justifyContent: 'center',
     },
     image: {
         flex: 1,
@@ -183,10 +175,8 @@ const styles = StyleSheet.create({
     btn: {
         height: 51,
         backgroundColor: "#ff6c00",
-        // marginHorizontal: 16,
         justifyContent: "center",
         alignItems: "center",
-        // padding: 16,
         borderRadius: 100,
         marginTop: 43, 
         marginBottom: 16,
