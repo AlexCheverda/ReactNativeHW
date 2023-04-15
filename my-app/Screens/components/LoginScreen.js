@@ -39,7 +39,7 @@ export default function LoginScreen() {
         const subscript = Dimensions.addEventListener("change", onChange);
         return () => subscript?.remove();
     }, []);
-    
+
     const keyboardHide = () => {
         setIsShowKeyboard(false);
         Keyboard.dismiss();
@@ -62,53 +62,69 @@ export default function LoginScreen() {
     return (
         <TouchableWithoutFeedback onPress={keyboardHide}>
             <View style={styles.container}>
-            <ImageBackground
-               style={styles.image}
-               source={require('../../assets/images/photoBG.png')}
-            >
-                {/* <Text style={styles.formTitle}>Войти</Text> */}
-                <KeyboardAvoidingView
-                    behavior={Platform.OS == "ios" ? "padding" : "height"}
-                    keyboardVerticalOffset={-35}
+                <ImageBackground
+                   style={styles.image}
+                   source={require('../../assets/images/photoBG.png')}
                 >
-                    <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 173 : 0}}>
-                        
-                    <Text style={styles.formTitle}>Войти</Text>
-                        <View>
-                            <TextInput
-                               value={email}
-                               onChangeText={emailHandler}
-                               style={styles.input}
-                               placeholder="Адрес электронной почты"
-                               placeholderTextColor="#bdbdbd"
-                               onFocus={() => setIsShowKeyboard(true)}
-                            />
+                    <KeyboardAvoidingView
+                       behavior={Platform.OS == "ios" ? "padding" : "height"}
+                       keyboardVerticalOffset={-35}
+                    >
+                        <View style={{ ...styles.form, width: dimensions }}>         
+                            <Text style={styles.formTitle}>Войти</Text>
+                            <View>
+                                <TextInput
+                                    value={email}
+                                    onChangeText={emailHandler}
+                                    style={{
+                                        ...styles.input,
+                                        borderColor: activeEmail ? "#ff6c00" : "#e8e8e8",
+                                        backgroundColor: activeEmail ? "#fff" : "#f6f6f6",
+                                    }}
+                                    placeholder="Адрес электронной почты"
+                                    placeholderTextColor="#bdbdbd"
+                                    onFocus={() => {setIsShowKeyboard(true), setActiveEmail(true);
+                                    }}
+                                    onBlur={() => setActiveEmail(false)}
+                                />
+                            </View>
+                            <View>
+                                <TextInput
+                                    value={password}
+                                    onChangeText={passwordHandler}
+                                    style={{    
+                                        ...styles.input,
+                                        borderColor: activePassword ? "#ff6c00" : "#e8e8e8",
+                                        backgroundColor: activePassword ? "#fff" : "#f6f6f6",
+                                        marginTop: 16,
+                                   }}
+                                   placeholder="Пароль"
+                                   placeholderTextColor="#bdbdbd"
+                                   secureTextEntry={secureText}
+                                   onFocus={() => {setIsShowKeyboard(true), setActivePassword(true);
+                                   }}
+                                   onBlur={() => setActivePassword(false)}
+                                /> 
+                                <TouchableOpacity
+                                style={styles.showPass}
+                                >
+                                    <Text style={styles.showPassTxt}>Показать</Text>
+                                </TouchableOpacity>   
+                            </View>
+                            <TouchableOpacity
+                                activeOpacity={0.5}
+                                style={styles.btn}
+                                onPress={onLogin}
+                            >
+                                <Text style={styles.titleBtn}>Войти</Text>
+                            </TouchableOpacity>
+                            <View style={styles.subLink}>
+                                <Text style={styles.subTitle}>Нет аккаунта? Зарегистрироваться</Text>
+                            </View>   
                         </View>
-                        <View>
-                            <TextInput
-                               value={password}
-                               onChangeText={passwordHandler}
-                               style={styles.input}
-                               placeholder="Пароль"
-                               placeholderTextColor="#bdbdbd"
-                               secureTextEntry={true}
-                               onFocus={() => setIsShowKeyboard(true)}
-                            />    
-                        </View>
-                        <TouchableOpacity
-                            activeOpacity={0.5}
-                            style={styles.btn}
-                            onPress={onLogin}
-                        >
-                            <Text style={styles.titleBtn}>Войти</Text>
-                        </TouchableOpacity>
-                        <View style={styles.subLink}>
-                        <Text style={styles.subTitle}>Нет аккаунта? Зарегистрироваться</Text>
-                        </View>   
-                    </View>
-                </KeyboardAvoidingView>
-            </ImageBackground>
-        </View>
+                    </KeyboardAvoidingView>
+                </ImageBackground>
+            </View>
         </TouchableWithoutFeedback>    
     );
 };
@@ -138,7 +154,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         letterSpacing: 1,
         marginTop: 32,
-        marginBottom: 16,
+        marginBottom: 32,
     },
     input: {
         fontFamily: "robotoRegular",
@@ -151,7 +167,18 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         lineHeight: 18.75,
         padding: 16,
-        marginTop: 16,
+    },
+    showPass: {
+        position: "absolute",
+        right: 16,
+        top: 30,
+    },
+    showPassTxt: {
+        fontSize: 16,
+        fontFamily: "robotoRegular",
+        fontWeight: "400",
+        lineHeight: 18.75,
+        color: "#1b4371",
     },
     btn: {
         height: 51,
@@ -159,7 +186,7 @@ const styles = StyleSheet.create({
         // marginHorizontal: 16,
         justifyContent: "center",
         alignItems: "center",
-        padding: 16,
+        // padding: 16,
         borderRadius: 100,
         marginTop: 43, 
         marginBottom: 16,
