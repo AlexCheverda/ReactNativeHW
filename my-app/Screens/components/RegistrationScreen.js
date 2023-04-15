@@ -24,7 +24,7 @@ export default function RegistrationScreen() {
       Keyboard.dismiss();
   };
 
-    const onLogin = () => {
+    const onSignUp = () => {
         if (password === "" || email === "" || login === "") {
             console.log("errore");
         return;
@@ -87,7 +87,7 @@ export default function RegistrationScreen() {
                         <TouchableOpacity
                             activeOpacity={0.5}
                             style={styles.btn}
-                            onPress={onLogin}
+                            onPress={onSignUp}
                         >
                             <Text style={styles.titleBtn}>Зарегистрироваться</Text>
                         </TouchableOpacity>
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
         // marginBottom: 0,
     },
     formTitle: {
-        // fontFamily: "robotoMedium",
+        fontFamily: "robotoMedium",
         fontSize: 30,
         lineHeight: 35.16,
         alignSelf: "center",
@@ -132,8 +132,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     input: {
-        // fontFamily: "robotoRegular",
-
+        fontFamily: "robotoRegular",
         fontSize: 16,
         height: 50,
         backgroundColor: "#f6f6f6",
@@ -157,6 +156,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     titleBtn: {
+        fontFamily: "robotoRegular",
         color: "#fff",
         fontSize: 16,
         lineHeight: 18.75,
@@ -166,7 +166,9 @@ const styles = StyleSheet.create({
       marginBottom: 45,
     },
     subTitle: {
+        fontFamily: "robotoRegular",
       color: "#1B4371",
       fontSize: 16,
+      lineHeight: 18.75,
     },
   });

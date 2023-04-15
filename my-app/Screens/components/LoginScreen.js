@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
     },
     formTitle: {
-        // fontFamily: "robotoMedium",
+        fontFamily: "robotoMedium",
         fontSize: 30,
         lineHeight: 35.16,
         alignSelf: "center",
@@ -125,8 +125,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     input: {
-        // fontFamily: "robotoRegular",
-
+        fontFamily: "robotoRegular",
         fontSize: 16,
         height: 50,
         backgroundColor: "#f6f6f6",
@@ -150,6 +149,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     titleBtn: {
+        fontFamily: "robotoRegular",
         color: "#fff",
         fontSize: 16,
         lineHeight: 18.75,
@@ -159,7 +159,9 @@ const styles = StyleSheet.create({
         marginBottom: 111,
       },
       subTitle: {
+        fontFamily: "robotoRegular",
         color: "#1B4371",
         fontSize: 16,
+        lineHeight: 18.75,
       },
   });
