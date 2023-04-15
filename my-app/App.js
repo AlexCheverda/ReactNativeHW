@@ -19,7 +19,6 @@ export default function App() {
     <View style={styles.container}>
       <LoginScreen />
       {/* <RegistrationScreen /> */}
-      {/* <Text>Open up App.js to start working on your app!</Text> */}
       <StatusBar style="auto" />
     </View>
   );

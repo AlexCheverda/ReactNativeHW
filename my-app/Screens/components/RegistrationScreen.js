@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   StyleSheet, 
   View, 
@@ -9,7 +9,8 @@ import {
   Keyboard,
   TouchableWithoutFeedback, 
   Platform, 
-  TouchableOpacity, 
+  TouchableOpacity,
+  Dimensions, 
 } from 'react-native';
 
 export default function RegistrationScreen() {

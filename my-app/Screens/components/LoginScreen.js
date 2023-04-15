@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { 
     StyleSheet, 
     View, 
@@ -9,14 +9,15 @@ import {
     Keyboard,
     TouchableWithoutFeedback, 
     Platform, 
-    TouchableOpacity, 
+    TouchableOpacity,
+    Dimensions, 
 } from 'react-native';
 
-import * as Font from "expo-font";
+// import * as Font from "expo-font";
 
-const loadApplication = async() => {
-    await Font.loadAsync({});
-};
+// const loadApplication = async() => {
+//     await Font.loadAsync({});
+// };
 
 export default function LoginScreen() {
 
@@ -24,6 +25,21 @@ export default function LoginScreen() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
+    const [secureText, setSecureText] = useState(true);
+    const [activeEmail, setActiveEmail] = useState(false);
+    const [activePassword, setActivePassword] = useState(false);
+
+    const [dimensions, setDimensions] = useState(Dimensions.get("window").width);
+
+    useEffect(() => {
+        const onChange = () => {
+            const width = Dimensions.get("window").width;
+            setDimensions(width);
+        };
+        const subscript = Dimensions.addEventListener("change", onChange);
+        return () => subscript?.remove();
+    }, []);
+    
     const keyboardHide = () => {
         setIsShowKeyboard(false);
         Keyboard.dismiss();
@@ -53,7 +69,7 @@ export default function LoginScreen() {
                 {/* <Text style={styles.formTitle}>Войти</Text> */}
                 <KeyboardAvoidingView
                     behavior={Platform.OS == "ios" ? "padding" : "height"}
-                    keyboardVerticalOffset={-115}
+                    keyboardVerticalOffset={-35}
                 >
                     <View style={{ ...styles.form, marginBottom: isShowKeyboard ? 173 : 0}}>
                         
