@@ -12,9 +12,10 @@ import {
   TouchableOpacity,
   Dimensions,
   Image,
+  Button,
 } from 'react-native';
 
-export default function RegistrationScreen() {
+export default function RegistrationScreen({ navigation }) {
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [login, setLogin] = useState("");
@@ -157,7 +158,8 @@ export default function RegistrationScreen() {
                                 <Text style={styles.titleBtn}>Зарегистрироваться</Text>
                             </TouchableOpacity>
                             <View style={styles.subLink}>
-                                <Text style={styles.subTitle}>Уже есть аккаунт? Войти</Text>
+                                <Text style={styles.subTitle}>Уже есть аккаунт?</Text>
+                                <Button title="Войти" onPress={() => navigation.navigate("LoginScreen", { sessionId: 45, userId: "22e24" })} />
                             </View>
                         </View>
                     </KeyboardAvoidingView>

@@ -11,9 +11,12 @@ import {
     Platform, 
     TouchableOpacity,
     Dimensions, 
+    Button,
 } from 'react-native';
 
-export default function LoginScreen() {
+export default function LoginScreen({ navigation, route }) {
+
+    const { userId } = route.params;
 
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
     const [email, setEmail] = useState("");
@@ -64,6 +67,8 @@ export default function LoginScreen() {
                        behavior={Platform.OS == "ios" ? "padding" : "height"}
                        keyboardVerticalOffset={-35}
                     >
+                        <Text>User Id {userId}</Text>
+                        <Button title="Go To Home" onPress={() => navigation.navigate("Home")} />
                         <View style={{ ...styles.form, width: dimensions }}>         
                             <Text style={styles.formTitle}>Войти</Text>
                             <View>
@@ -113,7 +118,8 @@ export default function LoginScreen() {
                                 <Text style={styles.titleBtn}>Войти</Text>
                             </TouchableOpacity>
                             <View style={styles.subLink}>
-                                <Text style={styles.subTitle}>Нет аккаунта? Зарегистрироваться</Text>
+                                <Text style={styles.subTitle}>Нет аккаунта?</Text>
+                                <Button title="Зарегистрироваться" onPress={() => navigation.navigate("RegistrationScreen")} />
                             </View>   
                         </View>
                     </KeyboardAvoidingView>
