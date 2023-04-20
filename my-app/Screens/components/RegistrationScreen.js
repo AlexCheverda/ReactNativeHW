@@ -15,7 +15,7 @@ import {
 } from 'react-native';
 
 // export default function RegistrationScreen({ navigation })
-export default function RegistrationScreen() {
+export default function RegistrationScreen({ navigation }) {
 
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [login, setLogin] = useState("");
@@ -71,7 +71,7 @@ export default function RegistrationScreen() {
                 >
                     <KeyboardAvoidingView
                         behavior={Platform.OS == "ios" ? "padding" : "height"}
-                        keyboardVerticalOffset={-90}
+                        keyboardVerticalOffset={-110}
                     >
                         <View style={styles.form}>
                             <View style={styles.avaBox}>
@@ -157,11 +157,14 @@ export default function RegistrationScreen() {
                             >
                                 <Text style={styles.titleBtn}>Зарегистрироваться</Text>
                             </TouchableOpacity>
-                            {/* <TouchableOpacity style={styles.subLink} onPress={() => navigation.navigate("LoginScreen")}>
+                            {/* <TouchableOpacity style={styles.subLink}>
                                 <Text style={styles.subTitle}>Уже есть аккаунт? 
                                 <Text>Войти</Text>
                                 </Text>
                             </TouchableOpacity> */}
+                            <TouchableOpacity style={styles.subLink} onPress={() => navigation.navigate("Login")}>
+                                <Text style={styles.subTitle}>Уже есть аккаунт? Войти</Text>
+                            </TouchableOpacity>
                         </View>
                     </KeyboardAvoidingView>
                 </ImageBackground>
@@ -204,7 +207,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     formTitle: {
-        fontFamily: "robotoMedium",
+        // fontFamily: "robotoMedium",
         fontSize: 30,
         color: '#212121',
         lineHeight: 35.16,
@@ -213,7 +216,7 @@ const styles = StyleSheet.create({
         marginBottom: 32,
     },
     input: {
-        fontFamily: "robotoRegular",
+        // fontFamily: "robotoRegular",
         fontSize: 16,
         height: 50,
         borderRadius: 8,
@@ -230,7 +233,7 @@ const styles = StyleSheet.create({
     },
     showPassTxt: {
         fontSize: 16,
-        fontFamily: "robotoRegular",
+        // fontFamily: "robotoRegular",
         fontWeight: "400",
         lineHeight: 18.75,
         color: "#1b4371",
@@ -245,7 +248,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     titleBtn: {
-        fontFamily: "robotoRegular",
+        // fontFamily: "robotoRegular",
         fontWeight: "400",
         color: "#fff",
         fontSize: 16,
@@ -255,7 +258,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     subTitle: {
-        fontFamily: "robotoRegular",
+        // fontFamily: "robotoRegular",
         color: "#1B4371",
         fontSize: 16,
         lineHeight: 18.75,

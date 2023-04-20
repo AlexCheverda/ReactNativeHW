@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 
 // export default function LoginScreen({ navigation, route })
-export default function LoginScreen() {
+export default function LoginScreen({ navigation }) {
 
     // const { userId } = route.params;
 
@@ -67,8 +67,8 @@ export default function LoginScreen() {
                        behavior={Platform.OS == "ios" ? "padding" : "height"}
                        keyboardVerticalOffset={-35}
                     >
-                        <Text>User Id {userId}</Text>
-                        <Button title="Go To Home" onPress={() => navigation.navigate("Home")} />
+                        {/* <Text>User Id {userId}</Text>
+                        <Button title="Go To Home" onPress={() => navigation.navigate("Home")} /> */}
                         <View style={{ ...styles.form, width: dimensions }}>         
                             <Text style={styles.formTitle}>Войти</Text>
                             <View>
@@ -111,14 +111,17 @@ export default function LoginScreen() {
                                 </TouchableOpacity>   
                             </View>
                             <TouchableOpacity
-                                activeOpacity={0.5}
+                                activeOpacity={0.8}
                                 style={styles.btn}
                                 onPress={onLogin}
                             >
                                 <Text style={styles.titleBtn}>Войти</Text>
                             </TouchableOpacity>
+                            <TouchableOpacity style={styles.subLink} onPress={() => navigation.navigate("Register")}>
+                                <Text style={styles.subTitle}>Нет аккаунта? Зарегистрироваться</Text>
+                            </TouchableOpacity>
                             {/* <View style={styles.subLink}>
-                                <Text style={styles.subTitle} onPress={() => navigation.navigate("RegistrationScreen")}>Нет аккаунта? Зарегистрироваться</Text>
+                                <Text style={styles.subTitle} onPress={() => navigation.navigate("Register")}>Нет аккаунта? Зарегистрироваться</Text>
                             </View>    */}
                         </View>
                     </KeyboardAvoidingView>
@@ -145,7 +148,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
     },
     formTitle: {
-        fontFamily: "robotoMedium",
+        // fontFamily: "robotoMedium",
         fontSize: 30,
         lineHeight: 35.16,
         alignSelf: "center",
@@ -154,7 +157,7 @@ const styles = StyleSheet.create({
         marginBottom: 32,
     },
     input: {
-        fontFamily: "robotoRegular",
+        // fontFamily: "robotoRegular",
         fontSize: 16,
         height: 50,
         backgroundColor: "#f6f6f6",
@@ -172,7 +175,7 @@ const styles = StyleSheet.create({
     },
     showPassTxt: {
         fontSize: 16,
-        fontFamily: "robotoRegular",
+        // fontFamily: "robotoRegular",
         fontWeight: "400",
         lineHeight: 18.75,
         color: "#1b4371",
@@ -187,7 +190,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     titleBtn: {
-        fontFamily: "robotoRegular",
+        // fontFamily: "robotoRegular",
         color: "#fff",
         fontSize: 16,
         lineHeight: 18.75,
@@ -195,11 +198,11 @@ const styles = StyleSheet.create({
     subLink: {
         alignItems: "center",
         marginBottom: 111,
-      },
-      subTitle: {
-        fontFamily: "robotoRegular",
+    },
+    subTitle: {
+        // fontFamily: "robotoRegular",
         color: "#1B4371",
         fontSize: 16,
         lineHeight: 18.75,
-      },
+    },
   });
