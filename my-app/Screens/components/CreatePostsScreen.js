@@ -2,7 +2,7 @@ import React from "react";
 import { View,Text, StyleSheet } from "react-native";
 
 
-const Home = () => {
+const CreatePostsScreen = () => {
     return (
         <View>
         <Text>ProfileScreen</Text>
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Home;
+export default CreatePostsScreen;
