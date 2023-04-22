@@ -10,6 +10,9 @@ import RegistrationScreen from './Screens/components/RegistrationScreen';
 import PostsScreen from './Screens/components/PostsScreen';
 import CreatePostsScreen from './Screens/components/CreatePostsScreen';
 import ProfileScreen from './Screens/components/ProfileScreen';
+import CommentsScreen from "./Screens/components/CommentsScreen";
+import MapScreen from './Screens/components/MapScreen';
+import Home from "./Screens/components/Home";
 
 export const useRoute = (isAuth) => {
     if (!isAuth) {
@@ -18,21 +21,27 @@ export const useRoute = (isAuth) => {
           <MainStack.Screen
            name="Login"
            component={LoginScreen}
-           options={{headerShown: false,}}
+           options={{ headerShown: false }}
           />
           <MainStack.Screen
            name="Register"
            component={RegistrationScreen}
-           options={{headerShown: false,}}
+           options={{ headerShown: false }}
           />
         </MainStack.Navigator>
       );      
     }
     return (
-      <MainTab.Navigator>
-        <MainTab.Screen name='Posts' component={PostsScreen} />
-        <MainTab.Screen name='Create' component={CreatePostsScreen} />
-        <MainTab.Screen name='Profile' component={ProfileScreen} />
+      <MainTab.Navigator tabBarOptions={{ showLabel: false }}>
+        <MainTab.Screen
+         options={{tabBarIcon: ({ focused, size, color }) => 
+         <MaterialCommunityIcons name="post" size={size} color={color} />,
+         }}
+         name='Posts'
+         component={PostsScreen}
+        />
+        <MainTab.Screen options={{}} name='Create' component={CreatePostsScreen} />
+        <MainTab.Screen options={{}} name='Profile' component={ProfileScreen} />
       </MainTab.Navigator> 
     );   
   }; 
