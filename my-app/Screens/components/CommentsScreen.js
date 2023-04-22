@@ -5,7 +5,7 @@ import { View,Text, StyleSheet } from "react-native";
 const CommentsScreen = () => {
     return (
         <View>
-        <Text>ProfileScreen</Text>
+        <Text>CommentsScreen</Text>
     </View>
     );
 };

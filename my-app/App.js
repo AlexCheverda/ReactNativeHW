@@ -1,29 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import {} from 'react-native';
+
+import * as Font from "expo-font";
+import { AppLoading } from 'expo';
+
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { StyleSheet, View } from 'react-native';
-// import { useFonts } from "expo-font";
+import { useRoute } from './router';
 
-// import * as Font from "expo-font";
-// import { AppLoading } from 'expo';
+const loadApplication = async () => {
+  await Font.loadAsync({
+    'robotoBold': require('./assets/fonts/Roboto-Bold.ttf'),
+    'robotoLight': require('./assets/fonts/Roboto-Light.ttf'),
+    'robotoRegular': require('./assets/fonts/Roboto-Regular.ttf'),
+    'robotoMedium': require('./assets/fonts/Roboto-Medium.ttf'),
+  });
+};
 
-// import Home from './Screens/components/Home';
-import RegistrationScreen from './Screens/components/RegistrationScreen';
-import LoginScreen from './Screens/components/LoginScreen';
+export default function App() {
+  const [isReady, setIsReady] = useState(false);
+  const routing = useRoute(true);
+  if (!isReady) {
+    return (
+    <AppLoading
+     startAsync={loadApplication}
+     onFinish={() => setIsReady(true)} 
+     onError={console.warn}
+    />
+  );
+}
 
+return 
+  <NavigationContainer>{routing}</NavigationContainer>
+}
 
-
-// const initialState = {
-//   email: '',
-//   password: '',
-// }
-
-
-const MainStack = createStackNavigator();
-const MainTab = createBottomTabNavigator();
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//   },
+// });
 
 // const loadApplication = async () => {
 //   await Font.loadAsync({
@@ -33,41 +48,3 @@ const MainTab = createBottomTabNavigator();
 //     'robotoMedium': require('./assets/fonts/Roboto-Medium.ttf'),
 //   });
 // };
-  
-
-export default function App() {
-//   const [isReady, setIsReady] = useState(false);
-
-//   if(!isReady) {
-//     return (
-//     <AppLoading
-//      startAsync={loadApplication}
-//      onFinish={() => setIsReady(true)} 
-//      onError={console.warn}
-//     />
-//   );
-// }
-
-return (
-  <NavigationContainer>
-    <MainStack.Navigator>
-      <MainStack.Screen
-       name="Login"
-       component={LoginScreen}
-       options={{headerShown: false}}
-      />
-      <MainStack.Screen
-       name="Register"
-       component={RegistrationScreen}
-       options={{headerShown: false}}
-      />
-    </MainStack.Navigator>   
-  </NavigationContainer>
-);
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
