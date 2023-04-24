@@ -48,6 +48,7 @@ export const useRoute = (isAuth) => {
           }}
           name='Posts'
           component={PostsScreen}
+          // source={require('./assets/images/grid.png')}
         />
         <MainTab.Screen
           options={{
