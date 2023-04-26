@@ -4,7 +4,8 @@ import {
     View, 
     Text, 
     TextInput, 
-    ImageBackground, 
+    ImageBackground,
+    Image, 
     KeyboardAvoidingView,
     Keyboard,
     TouchableWithoutFeedback, 
@@ -67,8 +68,6 @@ export default function LoginScreen({ navigation }) {
                        behavior={Platform.OS == "ios" ? "padding" : "height"}
                        keyboardVerticalOffset={-35}
                     >
-                        {/* <Text>User Id {userId}</Text>
-                        <Button title="Go To Home" onPress={() => navigation.navigate("Home")} /> */}
                         <View style={{ ...styles.form, width: dimensions }}>         
                             <Text style={styles.formTitle}>Войти</Text>
                             <View>
@@ -120,9 +119,6 @@ export default function LoginScreen({ navigation }) {
                             <TouchableOpacity style={styles.subLink} onPress={() => navigation.navigate("Register")}>
                                 <Text style={styles.subTitle}>Нет аккаунта? Зарегистрироваться</Text>
                             </TouchableOpacity>
-                            {/* <View style={styles.subLink}>
-                                <Text style={styles.subTitle} onPress={() => navigation.navigate("Register")}>Нет аккаунта? Зарегистрироваться</Text>
-                            </View>    */}
                         </View>
                     </KeyboardAvoidingView>
                 </ImageBackground>
@@ -134,12 +130,17 @@ export default function LoginScreen({ navigation }) {
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+    // width: Dimensions.get('window').width,
+    // height: Dimensions.get('window').height,
       backgroundColor: '#fff',
     },
     image: {
         flex: 1,
         resizeMode: "cover",
         justifyContent: "flex-end",
+        // width: '100%',
+        // height: '100%',
+        // position: 'absolute',
     },
     form: {
         borderTopLeftRadius: 25,
@@ -148,7 +149,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 16,
     },
     formTitle: {
-        // fontFamily: "robotoMedium",
+        fontFamily: "robotoMedium",
         fontSize: 30,
         lineHeight: 35.16,
         alignSelf: "center",
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
         marginBottom: 32,
     },
     input: {
-        // fontFamily: "robotoRegular",
+        fontFamily: "robotoRegular",
         fontSize: 16,
         height: 50,
         backgroundColor: "#f6f6f6",
@@ -175,7 +176,7 @@ const styles = StyleSheet.create({
     },
     showPassTxt: {
         fontSize: 16,
-        // fontFamily: "robotoRegular",
+        fontFamily: "robotoRegular",
         fontWeight: "400",
         lineHeight: 18.75,
         color: "#1b4371",
@@ -190,7 +191,7 @@ const styles = StyleSheet.create({
         marginBottom: 16,
     },
     titleBtn: {
-        // fontFamily: "robotoRegular",
+        fontFamily: "robotoRegular",
         color: "#fff",
         fontSize: 16,
         lineHeight: 18.75,
@@ -200,7 +201,7 @@ const styles = StyleSheet.create({
         marginBottom: 111,
     },
     subTitle: {
-        // fontFamily: "robotoRegular",
+        fontFamily: "robotoRegular",
         color: "#1B4371",
         fontSize: 16,
         lineHeight: 18.75,
