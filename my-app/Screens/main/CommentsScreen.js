@@ -1,13 +1,15 @@
 import React from "react";
-import { View,Text, StyleSheet } from "react-native";
+import { Text, StyleSheet } from "react-native";
 
 
 const CommentsScreen = () => {
     return (
-        <View>
-        <Text>CommentsScreen</Text>
-    </View>
-    );
+        <View style={styles.container}>
+            <Text>
+                CommentsScreen
+            </Text>
+        </View>
+    )
 };
 
 const styles = StyleSheet.create({
