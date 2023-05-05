@@ -14,20 +14,33 @@ import {
     Dimensions, 
 } from 'react-native';
 
+import {useDispatch} from 'react-redux';
+import {authSignInUser} from '../../redux/auth/authOperat';
+
+const initialState = {
+    email: "",
+    password: "",
+}
+
 // export default function LoginScreen({ navigation, route })
 export default function LoginScreen({ navigation }) {
 
     // const { userId } = route.params;
 
     const [isShowKeyboard, setIsShowKeyboard] = useState(false);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    const [secureText, setSecureText] = useState(true);
-    const [activeEmail, setActiveEmail] = useState(false);
-    const [activePassword, setActivePassword] = useState(false);
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
+    
+    const [state, setState] = useState(initialState);
+    // const [secureText, setSecureText] = useState(true);
+    // const [activeEmail, setActiveEmail] = useState(false);
+    // const [activePassword, setActivePassword] = useState(false);
 
     const [dimensions, setDimensions] = useState(Dimensions.get("window").width);
+    const [isInputFocusedEmail, setIsInputFocusedEmail] = useState(false);
+    const [isInputFocusedPassword, setIsInputFocusedPassword] = useState(false);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         const onChange = () => {
@@ -44,14 +57,17 @@ export default function LoginScreen({ navigation }) {
     };
 
     const onLogin = () => {
-        if (password === "" || email === "") {
-            console.log("error");
-        return;
-        };
         setIsShowKeyboard(false);
+        // if (password === "" || email === "") {
+        //     console.log("error");
+        // return;
+        // };
+        // setIsShowKeyboard(false);
         Keyboard.dismiss();
-        console.log("Credentials", `${email} + ${password}`);
-        setEmail(""), setPassword("");
+        dispatch(authSignInUser(state));
+        // console.log("Credentials", `${email} + ${password}`);
+        // setEmail(""), setPassword("");
+        setState(initialState);
     };
 
     const emailHandler = (text) => setEmail(text);
@@ -60,10 +76,10 @@ export default function LoginScreen({ navigation }) {
     return (
         <TouchableWithoutFeedback onPress={keyboardHide}>
             <View style={styles.container}>
-                <ImageBackground
+                <Image
                    style={styles.image}
                    source={require('../../assets/images/photoBG.png')}
-                >
+                ></Image>
                     <KeyboardAvoidingView
                        behavior={Platform.OS == "ios" ? "padding" : "height"}
                        keyboardVerticalOffset={-35}
@@ -72,12 +88,14 @@ export default function LoginScreen({ navigation }) {
                             <Text style={styles.formTitle}>Войти</Text>
                             <View>
                                 <TextInput
-                                    value={email}
-                                    onChangeText={emailHandler}
+                                    value={state.email}
+                                    onChangeText={(value) =>
+                                    setState((prevState) => ({...prevState, email: value}))
+                                    }
                                     style={{
                                         ...styles.input,
-                                        borderColor: activeEmail ? "#ff6c00" : "#e8e8e8",
-                                        backgroundColor: activeEmail ? "#fff" : "#f6f6f6",
+                                        borderColor: isInputFocusedEmail ? "#ff6c00" : "#e8e8e8",
+                                        backgroundColor: isInputFocusedEmail ? "#fff" : "#f6f6f6",
                                     }}
                                     placeholder="Адрес электронной почты"
                                     placeholderTextColor="#bdbdbd"
@@ -86,25 +104,27 @@ export default function LoginScreen({ navigation }) {
                                     onBlur={() => setActiveEmail(false)}
                                 />
                             </View>
-                            <View>
+                            <View style={{marginTop: 16}}>
                                 <TextInput
-                                    value={password}
-                                    onChangeText={passwordHandler}
+                                    value={state.password}
+                                    onChangeText={(value) =>
+                                    setState((prevState) => ({...prevState, password: value}))
+                                    }
                                     style={{    
                                         ...styles.input,
-                                        borderColor: activePassword ? "#ff6c00" : "#e8e8e8",
-                                        backgroundColor: activePassword ? "#fff" : "#f6f6f6",
-                                        marginTop: 16,
+                                        borderColor: isInputFocusedPassword ? "#ff6c00" : "#e8e8e8",
+                                        backgroundColor: isInputFocusedPassword ? "#fff" : "#f6f6f6",
+                                        
                                    }}
                                    placeholder="Пароль"
                                    placeholderTextColor="#bdbdbd"
-                                   secureTextEntry={secureText}
+                                   secureTextEntry={true}
                                    onFocus={() => {setIsShowKeyboard(true), setActivePassword(true);
                                    }}
                                    onBlur={() => setActivePassword(false)}
                                 /> 
                                 <TouchableOpacity
-                                style={styles.showPass}
+                                style={styles.showPass} onPress={onLogin}
                                 >
                                     <Text style={styles.showPassTxt}>Показать</Text>
                                 </TouchableOpacity>   
@@ -121,7 +141,6 @@ export default function LoginScreen({ navigation }) {
                             </TouchableOpacity>
                         </View>
                     </KeyboardAvoidingView>
-                </ImageBackground>
             </View>
         </TouchableWithoutFeedback>    
     );
